@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdReviews } from "react-icons/md";
-import { NavLink } from 'react-router-dom';
+import { NavLink , Link} from 'react-router-dom';
+import { AuthContext } from './Components/Auth_Provider/AUthProvider';
+import { toast } from 'react-toastify';
 const NavBar = () => {
+    const {user, logOut} = useContext(AuthContext)
     const links =<div className='flex gap-5'>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/signup'>Sign Up</NavLink>
         <NavLink to='/signin'>Sign In</NavLink>
+        <NavLink to='/services'>Services</NavLink>
     </div>
+    console.log(user);
+
+    const handleLogOut=()=>{
+        logOut()
+        .then(()=>{
+            toast('Logged Out successfully');
+        })
+    }
     return (
         <div className="navbar md:max-w-6xl mx-auto bg-base-100">
             <div className="navbar-start">
@@ -39,12 +51,14 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className='navbar-end'>
-            <div className="dropdown dropdown-end">
+              {
+                user? <div>
+                    <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                         <img
                             alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            src={user.photoURL} />
                     </div>
                 </div>
                 <ul
@@ -52,14 +66,19 @@ const NavBar = () => {
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                     <li>
                         <a className="justify-between">
-                            Profile
+                           {user?.displayName}
                             <span className="badge">New</span>
                         </a>
                     </li>
                     <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><a onClick={handleLogOut}>Logout</a></li>
                 </ul>
             </div>
+                </div>:
+               <Link to='/signin'>
+                Login
+               </Link>
+              }
             </div>
         </div>
     );
