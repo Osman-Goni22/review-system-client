@@ -3,6 +3,7 @@ import { MdReviews } from "react-icons/md";
 import { NavLink , Link} from 'react-router-dom';
 import { AuthContext } from './Components/Auth_Provider/AUthProvider';
 import { toast } from 'react-toastify';
+import './index.css'
 const NavBar = () => {
     const {user, logOut} = useContext(AuthContext)
     const links =<div className='flex gap-5'>
@@ -10,6 +11,13 @@ const NavBar = () => {
         <NavLink to='/signup'>Sign Up</NavLink>
         <NavLink to='/signin'>Sign In</NavLink>
         <NavLink to='/services'>Services</NavLink>
+        {
+            user&& <div className='flex gap-5'>
+             <NavLink to='/addservice'>Add Service</NavLink>
+             <NavLink to='/myreviews'>My Reviews</NavLink>
+             <NavLink to='/myservices'>My Service</NavLink>
+            </div>
+        }
     </div>
     console.log(user);
 
