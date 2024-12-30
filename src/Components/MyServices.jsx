@@ -93,7 +93,7 @@ const MyServices = () => {
                                        
                                     </td>
                                     <td>
-                                     <Link to={`http://localhost:3000/details/${service._id}`} className='btn'>Update</Link>
+                                     <Link to={`/update/${service._id}`} className='btn'>Update</Link>
                                       
                                        
                                     </td>

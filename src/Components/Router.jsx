@@ -9,6 +9,7 @@ import MyServices from "./MyServices";
 import PrivateRoute from "./PrivateRoute";
 import CircularRotateCards from "./circularRotateCards";
 import ServiceDetails from "./ServiceDetails";
+import Update from "./Update";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
     {
       path:"/details/:id",
       element:<PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
+      loader:({params})=>fetch(`http://localhost:3000/details/${params.id}`)
+    },
+    {
+      path:"/update/:id",
+      element:<PrivateRoute><Update></Update></PrivateRoute>,
       loader:({params})=>fetch(`http://localhost:3000/details/${params.id}`)
     }
   ]);
