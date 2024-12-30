@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import NavBar from '../NavBar';
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
 
     const navigate = useNavigate()
@@ -53,6 +53,7 @@ const {signIn} = useContext(AuthContext)
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Sign In</button>
                         </div>
+                        <p>New to this website? <Link to='/signup' className='text-red-500'>Register</Link></p>
                     </form>
                 </div>
             </div>

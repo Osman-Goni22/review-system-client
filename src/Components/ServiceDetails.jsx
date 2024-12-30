@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../NavBar';
@@ -16,30 +16,63 @@ const ServiceDetails = () => {
     console.log(service ? service : 'nai');
     console.log(rating);
 
+    const [review_time, setReviewTime] = useState(moment().format('LLL'));
+    const [humanizedTime, setHumanizedTime] = useState(moment().fromNow());
+  
+    // useEffect to update humanized time every minute
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setHumanizedTime(moment().fromNow());
+      }, 60000); // Updates every 60 seconds (60000ms)
+  
+      // Cleanup the interval on component unmount
+      return () => clearInterval(interval);
+    }, []);
+  
+
     const handleReview = e => {
         e.preventDefault();
         const review_text = e.target.review_text.value;
+        const userPhoto=user.photoURL;
+        const userName=user.displayName;
+          
+        console.log(userName, userPhoto);
 
-        let review_time = moment().format('LLL');
+       console.log(humanizedTime, review_time);
+       console.log(review_time);
+
         const newReview = {
             review_text,
             rating,
-            review_time
+            review_time,
+            userName,
+            userPhoto
+           
+          
         }
+       
+
+
+
+
 
         console.log(newReview);
 
-        if (service.review_List.length) {
+        if (service.review_List?.length) {
             service.review_List.push(newReview)
         }
         else {
 
-            service.total_reviews = [newReview]
+            service.review_List = [newReview]
         }
 
         axios.put(`http://localhost:3000/addReview/${service._id}`, service)
             .then(res => {
                 console.log(res.data);
+                axios.get(`http://localhost:3000/details/${service._id}`)
+                .then(res=>{
+                    setService(res.data)
+                })
             })
     }
 
@@ -79,10 +112,16 @@ const ServiceDetails = () => {
                     service.review_count ? <div>
 
                         <h2>{
-                            service.review_List.map(singleReview => <div>
-                                <img src={user?.photoURL} className='w-12 rounded-full ' alt="" />
-                                <h2>{user?.displayName}</h2>
+                            service.review_List.map(singleReview => <div className='my-7'>
+                                <img src={singleReview.userPhoto} className='w-12 rounded-full ' alt="" />
+                                <h2>{singleReview.userName}</h2>
+                               <div className='flex gap-5 justify-between items-center'>
+                               <Rating style={{ maxWidth: 250 }} value={singleReview.rating} onChange={setRating} />
+                               <h2 id='status'>{service.review_time}</h2>
+                               <h2>{humanizedTime}</h2>
+                               </div>
                                 <h2>{singleReview.review_text}</h2>
+                               
                             </div>)
                         }
                         </h2>
@@ -96,7 +135,7 @@ const ServiceDetails = () => {
                         <textarea
                             name='review_text'
                             placeholder="Bio"
-                            className="textarea textarea-bordered textarea-lg w-full max-w-xs" required></textarea>
+                            className="textarea textarea-bordered textarea-lg w-full " required></textarea>
                         <br />
 
                         <input type="submit" value="Add Review" className='btn btn-success mx-auto' />
