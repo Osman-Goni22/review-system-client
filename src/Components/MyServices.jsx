@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import Service from './Service';
 import NavBar from '../NavBar';
+import Swal from 'sweetalert2'
 
 const MyServices = () => {
     const { user } = useContext(AuthContext)
@@ -24,6 +25,41 @@ const MyServices = () => {
         setServices(results)
     }
 
+
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axios.delete(`http://localhost:3000/service/${id}`)
+                    .then(() => {
+
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+
+                        axios.get(`http://localhost:3000/myservices?email=${user.email}`)
+                            .then(res => {
+                                setServices(res.data);
+                                console.log(res.data);
+                            })
+
+
+                    })
+
+
+            }
+        });
+    }
 
     return (
         <div className='max-w-6xl mx-auto'>
@@ -47,7 +83,7 @@ const MyServices = () => {
                                     </label>
                                 </th>
                                 <th>Title</th>
-                                
+
                                 <th>Company</th>
                                 <th>Website</th>
                                 <th>Price</th>
@@ -56,11 +92,11 @@ const MyServices = () => {
                             </tr>
                         </thead>
                         <tbody>
-                        
+
                             {
-                                services.map((service,indx)=> <tr>
+                                services.map((service, indx) => <tr>
                                     <th>
-                                        {indx+1}
+                                        {indx + 1}
                                     </th>
                                     <td>
                                         <div className="flex items-center gap-3">
@@ -78,35 +114,35 @@ const MyServices = () => {
                                         </div>
                                     </td>
                                     <td>
-                                      {service.company}
-                                      
-                                       
+                                        {service.company}
+
+
                                     </td>
                                     <td>
-                                      {service.website}
-                                      
-                                       
+                                        {service.website}
+
+
                                     </td>
                                     <td>
-                                      ${service.price}
-                                      
-                                       
+                                        ${service.price}
+
+
                                     </td>
                                     <td>
-                                     <Link to={`/update/${service._id}`} className='btn'>Update</Link>
-                                      
-                                       
+                                        <Link to={`/update/${service._id}`} className='btn'>Update</Link>
+
+
                                     </td>
                                     <td>
-                                    <button className='btn'>Delete</button>
-                                      
-                                       
+                                        <button onClick={() => handleDelete(`${service._id}`)} className='btn'>Delete</button>
+
+
                                     </td>
-                                  
+
                                 </tr>)
                             }
-                        
-                            
+
+
 
 
                         </tbody>
