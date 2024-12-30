@@ -76,9 +76,10 @@ const Home = () => {
                 <h2 className='text-center mt-5 text-2xl font-bold'>
                     Meet Our Partners
                 </h2>
-                <div className='w-[400px] shadow-lg'>
-                    <img src={osmanImg} alt="" className='w-24 rounded-full mx-auto ' />
-                    <h2>Osman Goni</h2>
+                <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-3 justify-between'>
+                <div className='w-[400px] shadow-lg p-5 mt-5'>
+                    <img src={osmanImg} alt="" className='w-16 rounded-full mx-auto ' />
+                    <h2 className='text-center '>Osman Goni</h2>
                     <h2>CEO (Chief Executive Officer)</h2>
                     <p>Osman is a renowned architect interior designer, known for his innovative and sustainable design </p>
                     <div>
@@ -91,6 +92,39 @@ const Home = () => {
                             Encourages repeat visits and user retention.
                         </h2>
                     </div>
+                </div>
+                <div className='w-[400px] shadow-lg p-5 mt-5'>
+                    <img src={osmanImg} alt="" className='w-16 rounded-full mx-auto ' />
+                    <h2 className='text-center '>Osman Goni</h2>
+                    <h2>CEO (Chief Executive Officer)</h2>
+                    <p>Osman is a renowned architect interior designer, known for his innovative and sustainable design </p>
+                    <div>
+                        <h2>
+                            Role: Interact with users by responding to queries or comments.
+                        </h2>
+                        <h1>Impact:</h1>
+                        <h2>
+                            Builds an active, engaging community.
+                            Encourages repeat visits and user retention.
+                        </h2>
+                    </div>
+                </div>
+                <div className='w-[400px] shadow-lg p-5 mt-5'>
+                    <img src={osmanImg} alt="" className='w-16 rounded-full mx-auto ' />
+                    <h2 className='text-center '>Osman Goni</h2>
+                    <h2>CEO (Chief Executive Officer)</h2>
+                    <p>Osman is a renowned architect interior designer, known for his innovative and sustainable design </p>
+                    <div>
+                        <h2>
+                            Role: Interact with users by responding to queries or comments.
+                        </h2>
+                        <h1>Impact:</h1>
+                        <h2>
+                            Builds an active, engaging community.
+                            Encourages repeat visits and user retention.
+                        </h2>
+                    </div>
+                </div>
                 </div>
             </section>
 

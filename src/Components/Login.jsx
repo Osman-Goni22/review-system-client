@@ -3,11 +3,37 @@ import NavBar from '../NavBar';
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
+import { auth } from './Firebase_init/Firebase_init';
 const Login = () => {
-
     const navigate = useNavigate()
 
-const {signIn} = useContext(AuthContext)
+
+    const {signIn, socialLogin} = useContext(AuthContext)
+    const handleSocialLogin = ()=>{
+       socialLogin()
+       .then(res=>{
+        console.log(res);
+        const profile= {
+                        displayName:res.user.displayName,
+                        photoURL:res.user.photoURL
+                        
+                    }
+                  const user = auth.currentUser;
+                    updateProfile(user, profile)
+                    .then(()=>{
+                    console.log('User profile updated');
+                    toast('Logged in Successfully');
+                    navigate('/');
+
+                    })
+                    }
+                  )
+                }
+       
+    
+
+    
     const handleLogin = (e)=>{
         e.preventDefault();
         const form = e.target;
@@ -54,6 +80,7 @@ const {signIn} = useContext(AuthContext)
                             <button className="btn btn-primary">Sign In</button>
                         </div>
                         <p>New to this website? <Link to='/signup' className='text-red-500'>Register</Link></p>
+                        <p className='btn text-center' onClick={handleSocialLogin}>LoginWithGoogle</p>
                     </form>
                 </div>
             </div>

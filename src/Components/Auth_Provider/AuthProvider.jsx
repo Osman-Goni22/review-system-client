@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../Firebase_init/Firebase_init';
 import { FaBullseye } from 'react-icons/fa6';
@@ -33,6 +33,13 @@ const AuthProvider = ({children}) => {
    setLoading(true)
   }
 
+  const provider = new GoogleAuthProvider();
+
+  const socialLogin =()=>
+  {
+    return signInWithPopup(auth, provider )
+  }
+
 
     
 
@@ -42,7 +49,8 @@ const AuthProvider = ({children}) => {
         signIn,
         user, 
         setUser,
-        logOut
+        logOut,
+        socialLogin
 
     }
     return (

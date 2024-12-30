@@ -1,28 +1,121 @@
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import Service from './Service';
 import NavBar from '../NavBar';
 
 const MyServices = () => {
-    const {user}= useContext(AuthContext)
-    const [services, setServices]= useState([])
-    useEffect(()=>{
+    const { user } = useContext(AuthContext)
+    const [services, setServices] = useState([])
+    useEffect(() => {
         axios.get(`http://localhost:3000/myservices?email=${user.email}`)
-        .then(res=>{
-            setServices(res.data);
-            console.log(res.data);
-        })
-    },[])
+            .then(res => {
+                setServices(res.data);
+                console.log(res.data);
+            })
+    }, [])
+
+    const handleSearch = () => {
+        const searchValue = document.getElementById('search').value;
+        const regex = new RegExp(searchValue, 'i')
+        const results = services.filter(service => regex.test(service.title))
+        console.log(results);
+        setServices(results)
+    }
+
+
     return (
-       <div className='max-w-6xl mx-auto'>
-        <NavBar></NavBar>
-         <div className='grid grid-cols-3 gap-5'>
-            {
-                services.map(service=><Service service={service} key={service._id}></Service>)
-            }
+        <div className='max-w-6xl mx-auto'>
+            <NavBar></NavBar>
+            <section className='mx-auto my-5 md:w-1/3 lg:w-1/4'>
+                <div className="join">
+                    <input id='search' className="input input-bordered join-item" placeholder="Title" />
+                    <button onClick={handleSearch} className="btn join-item rounded-r-full">Search</button>
+                </div>
+            </section>
+
+            <div className=''>
+                <div className="overflow-x-auto">
+                    <table className="table">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label>
+                                        <input type="checkbox" className="checkbox" />
+                                    </label>
+                                </th>
+                                <th>Title</th>
+                                
+                                <th>Company</th>
+                                <th>Website</th>
+                                <th>Price</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            {
+                                services.map((service,indx)=> <tr>
+                                    <th>
+                                        {indx+1}
+                                    </th>
+                                    <td>
+                                        <div className="flex items-center gap-3">
+                                            <div className="avatar">
+                                                <div className="mask mask-squircle h-12 w-12">
+                                                    <img
+                                                        src={service.photo}
+                                                        alt="Avatar Tailwind CSS Component" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div className="font-bold">{service.title}</div>
+                                                <div className="text-sm opacity-50">United States</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                      {service.company}
+                                      
+                                       
+                                    </td>
+                                    <td>
+                                      {service.website}
+                                      
+                                       
+                                    </td>
+                                    <td>
+                                      ${service.price}
+                                      
+                                       
+                                    </td>
+                                    <td>
+                                     <Link to={`http://localhost:3000/details/${service._id}`} className='btn'>Update</Link>
+                                      
+                                       
+                                    </td>
+                                    <td>
+                                    <button className='btn'>Delete</button>
+                                      
+                                       
+                                    </td>
+                                  
+                                </tr>)
+                            }
+                        
+                            
+
+
+                        </tbody>
+                        {/* foot */}
+
+                    </table>
+                </div>
+            </div>
         </div>
-       </div>
     );
 };
 
