@@ -1,8 +1,9 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
+import { motion } from "framer-motion";
 const Service = ({ service }) => {
     return (
-        <div className="card bg-base-100 shadow">
+        <div className="card bg-base-100 shadow relative hover:-z-40">
             <figure>
                 <img
                     src={service.photo}
@@ -14,12 +15,11 @@ const Service = ({ service }) => {
                  {
                     service.title
                  }
-                    <div className="badge badge-secondary">NEW</div>
+                    <div className="badge badge-secondary">{service.price}$</div>
                 </h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div className="card-actions justify-end">
-                    <div className="badge badge-outline">Fashion</div>
-                    <div className="badge badge-outline">Products</div>
+                <p>{service.description}</p>
+                <div className="card-actions justify-center">
+                    <NavLink className='btn' to={`/details/${service._id}`}>See Details</NavLink>
                 </div>
             </div>
         </div>
