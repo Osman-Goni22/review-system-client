@@ -35,7 +35,7 @@ const ServiceDetails = () => {
         const review_text = e.target.review_text.value;
         const userPhoto=user.photoURL;
         const userName=user.displayName;
-          
+        const userEmail = user.email;  
         console.log(userName, userPhoto);
 
        console.log(humanizedTime, review_time);
@@ -46,7 +46,8 @@ const ServiceDetails = () => {
             rating,
             review_time,
             userName,
-            userPhoto
+            userPhoto,
+            userEmail
            
           
         }

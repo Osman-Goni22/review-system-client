@@ -14,7 +14,7 @@ const NavBar = () => {
         {
             user&& <div className='flex gap-5'>
              <NavLink to='/addservice'>Add Service</NavLink>
-             <NavLink to='/myreviews'>My Reviews</NavLink>
+             <NavLink to={`/myReview/${user.email}`}>My Reviews</NavLink>
              <NavLink to='/myservices'>My Service</NavLink>
             </div>
         }
