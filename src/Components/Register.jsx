@@ -5,6 +5,7 @@ import { AuthContext } from './Auth_Provider/AUthProvider';
 import { updateProfile } from 'firebase/auth';
 import { auth } from './Firebase_init/Firebase_init';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 
 const Register = () => {
@@ -81,6 +82,8 @@ const Register = () => {
                     <p>Already have an account? <Link to='/signin' className='text-red-500'>Login</Link></p>
                 </form>
             </div>
+
+            <Footer></Footer>
         </div>
     );
 };

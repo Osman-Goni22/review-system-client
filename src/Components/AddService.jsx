@@ -5,6 +5,7 @@ import moment from 'moment'
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Footer from './Footer';
 
 const AddService = () => {
 
@@ -138,6 +139,8 @@ const AddService = () => {
 
                 <input className='input input-bordered hover:bg-orange-500 hover:text-white' type="submit" />
             </form>
+
+            <Footer></Footer>
         </div>
 
     )

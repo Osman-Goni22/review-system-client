@@ -5,6 +5,7 @@ import { Rating } from '@smastrom/react-rating';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { AuthContext } from './Auth_Provider/AUthProvider';
+import Footer from './Footer';
 
 
 
@@ -63,10 +64,6 @@ const MyReviews = () => {
 
     console.log(rating);
     const handleUpdate = (review) => {
-       
-
-
-
         document.getElementById("my_modal_1").showModal();
     }
 
@@ -148,6 +145,8 @@ const MyReviews = () => {
 
                 </table>
             </div>
+
+            <Footer></Footer>
 
         </div>
 

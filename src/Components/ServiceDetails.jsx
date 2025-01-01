@@ -8,6 +8,7 @@ import '@smastrom/react-rating/style.css'
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import axios from 'axios';
 import moment from 'moment';
+import Footer from './Footer';
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
     const [rating, setRating] = useState(0)
@@ -145,6 +146,9 @@ const ServiceDetails = () => {
                 </div>
 
             </div>
+
+
+            <Footer></Footer>
 
 
         </div >

@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 import { auth } from './Firebase_init/Firebase_init';
+import Footer from './Footer';
 const Login = () => {
     const navigate = useNavigate()
 
@@ -83,6 +84,8 @@ const Login = () => {
                         <p className='btn text-center' onClick={handleSocialLogin}>LoginWithGoogle</p>
                     </form>
                 </div>
+
+                <Footer></Footer>
             </div>
         );
     

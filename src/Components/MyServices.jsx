@@ -5,6 +5,7 @@ import { AuthContext } from './Auth_Provider/AUthProvider';
 import Service from './Service';
 import NavBar from '../NavBar';
 import Swal from 'sweetalert2'
+import Footer from './Footer';
 
 const MyServices = () => {
     const { user } = useContext(AuthContext)
@@ -151,6 +152,8 @@ const MyServices = () => {
                     </table>
                 </div>
             </div>
+
+            <Footer></Footer>
         </div>
     );
 };

@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
  const [user, setUser]=useState(null)
   const [loading, setLoading]=useState(true);
 
+  let users=[];
   const createUser= (email,password)=>{
     return createUserWithEmailAndPassword(auth,email,password)
   }
@@ -25,6 +26,10 @@ const AuthProvider = ({children}) => {
         if(currentUser?.email){
           const user={
             email:currentUser.email
+          }
+
+          if(!users.includes(currentUser.email)){
+            users.push(currentUser.email)
           }
 
           axios.post('http://localhost:3000/jwt', user, {withCredentials:true})
@@ -72,7 +77,8 @@ const AuthProvider = ({children}) => {
         user, 
         setUser,
         logOut,
-        socialLogin
+        socialLogin,
+        users
 
     }
     return (
