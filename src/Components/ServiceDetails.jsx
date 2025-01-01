@@ -47,8 +47,7 @@ const ServiceDetails = () => {
             review_time,
             userName,
             userPhoto,
-            userEmail
-           
+            userEmail, 
           
         }
        

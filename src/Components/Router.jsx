@@ -52,9 +52,9 @@ const router = createBrowserRouter([
       loader:({params})=>fetch(`http://localhost:3000/details/${params.id}`)
     },
     {
-      path:"/myReview/:email",
+      path:"/myReview",
       element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>,
-      loader:({params})=>fetch(`http://localhost:3000/myReview/${params.email}`)
+     
     }
   ]);
 

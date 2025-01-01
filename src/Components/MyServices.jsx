@@ -10,18 +10,18 @@ const MyServices = () => {
     const { user } = useContext(AuthContext)
     const [services, setServices] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:3000/myservices?email=${user.email}`)
+        axios.get(`http://localhost:3000/myservices?email=${user.email}`, {withCredentials:true})
             .then(res => {
                 setServices(res.data);
-                console.log(res.data);
+            
             })
-    }, [])
+    }, [user.email])
 
     const handleSearch = () => {
         const searchValue = document.getElementById('search').value;
         const regex = new RegExp(searchValue, 'i')
         const results = services.filter(service => regex.test(service.title))
-        console.log(results);
+       
         setServices(results)
     }
 
@@ -38,7 +38,7 @@ const MyServices = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:3000/service/${id}`)
+                axios.delete(`http://localhost:3000/service/${id}`, {withCredentials:true})
                     .then(() => {
 
                         Swal.fire({
@@ -47,10 +47,10 @@ const MyServices = () => {
                             icon: "success"
                         });
 
-                        axios.get(`http://localhost:3000/myservices?email=${user.email}`)
+                        axios.get(`http://localhost:3000/myservices?email=${user.email}`, {withCredentials:true})
                             .then(res => {
                                 setServices(res.data);
-                                console.log(res.data);
+                               
                             })
 
 

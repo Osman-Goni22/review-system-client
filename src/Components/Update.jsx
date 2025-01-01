@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const Update = () => {
     const loadedService = useLoaderData()
   
-
+   const navigate = useNavigate();
     
     const {user} = useContext(AuthContext)
     
@@ -34,7 +34,10 @@ const Update = () => {
 
        axios.put(`http://localhost:3000/update/${loadedService._id}`, data)
        .then(res=>{
-         console.log(res.data);
+         if(res.data.modifiedCount>0){
+            toast('Service Updated Successfully');
+            navigate('/myservices')
+         }
        })
    
     }

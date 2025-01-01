@@ -8,9 +8,10 @@ const Services = () => {
     const [services, setServices]= useState([])
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/services')
+        axios.get('http://localhost:3000/services', {withCredentials:true})
         .then(res=>{
             setServices(res.data);
+            console.log(res.data);
         })
     },[])
     return (

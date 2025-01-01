@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import React, { createContext, useEffect, useState } from 'react';
 import { auth } from '../Firebase_init/Firebase_init';
 import { FaBullseye } from 'react-icons/fa6';
+import axios from 'axios';
 export  const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
@@ -20,7 +21,28 @@ const AuthProvider = ({children}) => {
   useEffect(()=>{
     const subscribe = onAuthStateChanged(auth, currentUser=>{
         setUser(currentUser)
-       setLoading(false)
+
+        if(currentUser?.email){
+          const user={
+            email:currentUser.email
+          }
+
+          axios.post('http://localhost:3000/jwt', user, {withCredentials:true})
+          .then(res=>{
+            console.log('login token',res.data);
+            setLoading(false)
+          })
+        }
+        else{
+          
+          axios.post('http://localhost:3000/logout', {}, {withCredentials:true})
+          .then(res=>{
+            console.log('logout token:',res.data);
+            setLoading(false)
+          })
+        }
+
+       
     })
     return ()=>{
         subscribe();
