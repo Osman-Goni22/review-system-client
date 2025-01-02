@@ -3,6 +3,7 @@ import NavBar from './../NavBar';
 import axios from 'axios';
 import Service from './Service';
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
 
 const Services = () => {
     const [services, setServices] = useState([])
@@ -32,7 +33,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/services', { withCredentials: true })
+        axios.get('http://localhost:3000/services', {withCredentials:true})
             .then(res => {
                 setServices(res.data);
                 setRealServices(res.data)
@@ -42,6 +43,11 @@ const Services = () => {
     return (
         <div className='max-w-6xl mx-auto'>
             <NavBar></NavBar>
+
+            <Helmet>
+                <title>Service Page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
             
             <p className=' text-2xl font-bold my-5 text-center'>Select a Service</p>
             <div className='flex justify-center items-center gap-10'>

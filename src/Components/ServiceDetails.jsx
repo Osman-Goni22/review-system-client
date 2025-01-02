@@ -3,12 +3,14 @@ import { useLoaderData } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import NavBar from '../NavBar';
 import { Rating } from '@smastrom/react-rating'
-
+import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
 import '@smastrom/react-rating/style.css'
 import { AuthContext } from './Auth_Provider/AUthProvider';
 import axios from 'axios';
 import moment from 'moment';
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
+import { motion } from 'framer-motion';
 const ServiceDetails = () => {
     const { user } = useContext(AuthContext)
     const [rating, setRating] = useState(0)
@@ -19,28 +21,28 @@ const ServiceDetails = () => {
 
     const [review_time, setReviewTime] = useState(moment().format('LLL'));
     const [humanizedTime, setHumanizedTime] = useState(moment().fromNow());
-  
+
     // useEffect to update humanized time every minute
     useEffect(() => {
-      const interval = setInterval(() => {
-        setHumanizedTime(moment().fromNow());
-      }, 60000); // Updates every 60 seconds (60000ms)
-  
-      // Cleanup the interval on component unmount
-      return () => clearInterval(interval);
+        const interval = setInterval(() => {
+            setHumanizedTime(moment().fromNow());
+        }, 60000); // Updates every 60 seconds (60000ms)
+
+        // Cleanup the interval on component unmount
+        return () => clearInterval(interval);
     }, []);
-  
+
 
     const handleReview = e => {
         e.preventDefault();
         const review_text = e.target.review_text.value;
-        const userPhoto=user.photoURL;
-        const userName=user.displayName;
-        const userEmail = user.email;  
+        const userPhoto = user.photoURL;
+        const userName = user.displayName;
+        const userEmail = user.email;
         console.log(userName, userPhoto);
 
-       console.log(humanizedTime, review_time);
-       console.log(review_time);
+        console.log(humanizedTime, review_time);
+        console.log(review_time);
 
         const newReview = {
             review_text,
@@ -48,10 +50,14 @@ const ServiceDetails = () => {
             review_time,
             userName,
             userPhoto,
-            userEmail, 
-          
+            userEmail,
+
         }
-       
+
+
+
+
+
 
 
 
@@ -71,15 +77,25 @@ const ServiceDetails = () => {
             .then(res => {
                 console.log(res.data);
                 axios.get(`http://localhost:3000/details/${service._id}`)
-                .then(res=>{
-                    setService(res.data)
-                })
+                    .then(res => {
+                        setService(res.data)
+                    })
             })
     }
 
     return (
-        <div>
+        <div className='lg:max-w-6xl mx-auto '>
             <NavBar></NavBar>
+            <Helmet>
+                <title>Details Page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
+
+           
+
+                
+
+         
             <div className="card bg-base-100 shadow-xl p-5 relative hover:-z-40 md:w-1/2 mx-auto">
                 <figure>
                     <img
@@ -116,13 +132,13 @@ const ServiceDetails = () => {
                             service.review_List.map(singleReview => <div className='my-7'>
                                 <img src={singleReview.userPhoto} className='w-12 rounded-full ' alt="" />
                                 <h2>{singleReview.userName}</h2>
-                               <div className='flex gap-5 justify-between items-center'>
-                               <Rating style={{ maxWidth: 250 }} value={singleReview.rating} onChange={setRating} />
-                               <h2 id='status'>{service.review_time}</h2>
-                               <h2>{humanizedTime}</h2>
-                               </div>
+                                <div className='flex gap-5 justify-between items-center'>
+                                    <Rating style={{ maxWidth: 250 }} value={singleReview.rating} onChange={setRating} />
+                                    <h2 id='status'>{service.review_time}</h2>
+                                    <h2>{humanizedTime}</h2>
+                                </div>
                                 <h2>{singleReview.review_text}</h2>
-                               
+
                             </div>)
                         }
                         </h2>
@@ -146,6 +162,7 @@ const ServiceDetails = () => {
                 </div>
 
             </div>
+          
 
 
             <Footer></Footer>

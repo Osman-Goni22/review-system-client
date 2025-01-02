@@ -3,6 +3,20 @@ import { NavLink } from 'react-router-dom';
 import { motion } from "framer-motion";
 const Service = ({ service }) => {
     return (
+        <motion.div
+        
+        animate={{
+                        opacity: 1,
+                        x: 0,
+                        transition: { duration: 1000 }
+                    }}
+        
+                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ scale: 1.1 }}
+        
+        >
+
+        
         <div className="card bg-base-100 shadow relative hover:-z-40">
             <figure>
                 <img
@@ -19,10 +33,12 @@ const Service = ({ service }) => {
                 </h2>
                 <p>{service.description}</p>
                 <div className="card-actions justify-center">
-                    <NavLink className='btn' to={`/details/${service._id}`}>See Details</NavLink>
+                    <NavLink className='btn bg-secondary' to={`/details/${service._id}`}>See Details</NavLink>
                 </div>
             </div>
         </div>
+
+        </motion.div>
     );
 };
 

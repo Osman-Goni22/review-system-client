@@ -6,6 +6,7 @@ import { updateProfile } from 'firebase/auth';
 import { auth } from './Firebase_init/Firebase_init';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
 
 
 const Register = () => {
@@ -45,6 +46,11 @@ const Register = () => {
     return (
         <div className='max-w-6xl mx-auto'>
             <NavBar></NavBar>
+
+            <Helmet>
+                <title>Register Page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
             <div className="card bg-base-100 mx-auto max-w-sm shrink-0 shadow">
                 <form onSubmit={handleRegister} className="card-body">
                     <div className="form-control">

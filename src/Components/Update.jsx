@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import moment from 'moment';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 const Update = () => {
     const loadedService = useLoaderData()
@@ -44,6 +45,10 @@ const Update = () => {
     return (
         <div>
             <NavBar></NavBar>
+            <Helmet>
+                <title>Update Page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
             <form className='flex flex-col gap-5 md:w-1/2 lg:w-1/3 mx-auto shadow p-5' onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label > Photo</label> <br />

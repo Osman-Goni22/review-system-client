@@ -6,6 +6,7 @@ import Service from './Service';
 import NavBar from '../NavBar';
 import Swal from 'sweetalert2'
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
 
 const MyServices = () => {
     const { user } = useContext(AuthContext)
@@ -65,6 +66,11 @@ const MyServices = () => {
     return (
         <div className='max-w-6xl mx-auto'>
             <NavBar></NavBar>
+
+            <Helmet>
+                <title>MyServices page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
             <section className='mx-auto my-5 md:w-1/3 lg:w-1/4'>
                 <div className="join">
                     <input id='search' className="input input-bordered join-item" placeholder="Title" />

@@ -11,10 +11,12 @@ import CircularRotateCards from "./circularRotateCards";
 import ServiceDetails from "./ServiceDetails";
 import Update from "./Update";
 import MyReviews from "./MyReviews";
+import NotFound from "./NotFound";
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Home></Home>,
+      errorElement:<NotFound></NotFound>
     },
     {
       path:'/signup',

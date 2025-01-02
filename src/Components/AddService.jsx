@@ -6,6 +6,7 @@ import { AuthContext } from './Auth_Provider/AUthProvider';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
 
 const AddService = () => {
 
@@ -57,6 +58,11 @@ const AddService = () => {
     return (
         <div className='max-w-6xl mx-auto'>
             <NavBar></NavBar>
+
+            <Helmet>
+                <title>Add Service Page</title>
+                <meta name="description" content="Nested component" />
+            </Helmet>
             <h2 className='text-center font-bold'>Add Service</h2>
             <form className='flex flex-col gap-5 md:w-1/2 lg:w-1/3 mx-auto shadow p-5' onSubmit={handleSubmit(onSubmit)}>
                 <div>
@@ -137,7 +143,7 @@ const AddService = () => {
 
                
 
-                <input className='input input-bordered hover:bg-orange-500 hover:text-white' type="submit" />
+                <input className='input input-bordered bg-orange-300 hover:bg-orange-500 hover:text-white' type="submit" />
             </form>
 
             <Footer></Footer>
