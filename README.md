@@ -26,6 +26,17 @@
   <li>User can see , update and delete the services he added</li>
   <li>User can see , update and delete the reviewes he provided</li>
 </ul>
+<h2>Dependencies:</h2>
+<li>Tanstack Query</li>
+<li>Firebase </li>
+<li>Hook-form</li>
+<li>React-rating</li>
+<li>React-swiper</li>
+<li>toastify</li>
+<li>react-router-dom</li>
+<li>sweetalert2</li>
+<li>axios</li>
+
 
 <h2>Guidelines to run the project </h2>
 <p>Give the following commands</p>
