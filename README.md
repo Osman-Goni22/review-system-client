@@ -27,6 +27,13 @@
   <li>User can see , update and delete the reviewes he provided</li>
 </ul>
 
+<h2>Guidelines to run the project </h2>
+<p>Give the following commands</p>
+<li>npm install </li>
+<li>install all the dependencis given above</li>
+<li>make the .env.local file and make DB_USER and DB_PASS  variables</li>
+
+
 
 <h3>Live Link:</h3>
 https://service-review-cfcd0.web.app
