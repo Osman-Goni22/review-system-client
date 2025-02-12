@@ -10,7 +10,7 @@ const NavBar = () => {
 
 
         {
-            user ? <div className='flex gap-5'>
+            user ? <div className='flex flex-col lg:flex-row  gap-5'>
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/services'>Services</NavLink>
                 <NavLink to='/addservice'>Add Service</NavLink>
@@ -36,7 +36,7 @@ const NavBar = () => {
             })
     }
     return (
-        <div className="navbar  mx-auto  bg-gradient-to-r from-blue-500 to-purple-500 px-4">
+        <div className="navbar  mx-auto sticky top-0 bg-gradient-to-r z-50 from-blue-500 to-purple-500 px-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -59,7 +59,7 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><MdReviews className='text-green-800 text-2xl'></MdReviews></a>
+                <a className=" text-2xl"><MdReviews className='text-green-800 text-2xl'></MdReviews></a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

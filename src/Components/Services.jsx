@@ -33,7 +33,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        axios.get('https://service-system-reviews-server.vercel.app/services', {withCredentials:true})
+        axios.get('http://localhost:3000/services', {withCredentials:true})
             .then(res => {
                 setServices(res.data);
                 setRealServices(res.data)
@@ -41,7 +41,7 @@ const Services = () => {
     }, [])
 
     return (
-        <div className='max-w-6xl mx-auto'>
+        <div className=' mx-auto'>
             <NavBar></NavBar>
 
             <Helmet>
@@ -49,7 +49,7 @@ const Services = () => {
                 <meta name="description" content="Nested component" />
             </Helmet>
             
-            <p className=' text-2xl font-bold my-5 text-center'>Select a Service</p>
+            <p className=' text-2xl font-bold my-5 text-center'>Search by Category</p>
             <div className='flex justify-center items-center gap-10'>
            
                 <form className='w-[300px] mt-5' action="" onSubmit={handleSearch}>
@@ -75,7 +75,7 @@ const Services = () => {
             </div>
 
 
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
                 {
                     services.map(service => <Service service={service} key={service._id}></Service>)
                 }

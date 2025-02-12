@@ -16,8 +16,6 @@ import { AuthContext } from './Auth_Provider/AUthProvider';
 import { Helmet } from 'react-helmet';
 const Home = () => {
 
-    const cards = ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5"];
-    const circleRadius = 150; // Radius of the circular rotation
     const [services, setServices] = useState([])
     const [bestServices, setBestServices] = useState([])
     const { users } = useContext(AuthContext)
@@ -29,7 +27,7 @@ const Home = () => {
     const [end, setEnd] = useState(100)
 
     useEffect(() => {
-        axios.get('https://service-system-reviews-server.vercel.app/features')
+        axios.get('http://localhost:3000/features')
             .then(res => {
                 setServices(res.data)
 
@@ -37,7 +35,7 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('https://service-system-reviews-server.vercel.app/services', { withCredentials: true })
+        axios.get('http://localhost:3000/services', { withCredentials: true })
             .then(res => {
                 setEnd(res.data.length);
                 setTotalServices(res.data)
@@ -59,7 +57,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.get('https://service-system-reviews-server.vercel.app/best')
+        axios.get('http://localhost:3000/best')
             .then(res => {
                 setBestServices(res.data)
                 // const services = res.data;
@@ -69,7 +67,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div className='max-w-6xl mx-auto'>
+        <div className=' mx-auto'>
             <NavBar></NavBar>
 
             <div className='grid lg:grid-cols-3  justify-center gap-5'>
@@ -84,6 +82,9 @@ const Home = () => {
 
             </div>
             <Banner></Banner>
+             
+             <div className='max-w-6xl mx-auto'>
+            
 
             <Helmet>
                 <title>Home Page</title>
@@ -92,7 +93,7 @@ const Home = () => {
 
 
             <section>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                     {
                         services.map(service => <Service service={service} key={service._id}></Service>)
                     }
@@ -110,7 +111,7 @@ const Home = () => {
 
             <section>
                 <h2 className='text-center mt-5 text-2xl font-bold'>Most Reviewed Services</h2>
-                <div className='grid lg:grid-cols-3 gap-5 mt-5'>
+                <div className='grid lg:grid-cols-4 gap-5 mt-5'>
                     {
                         bestServices.map(service => <Service key={service._id} service={service}></Service>)
                     }
@@ -215,6 +216,8 @@ const Home = () => {
 
             <Footer></Footer>
 
+             </div>
+           
         </div>
     );
 };

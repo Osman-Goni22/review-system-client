@@ -21,7 +21,7 @@ const MyReviews = () => {
   
 
     useEffect(() => {
-        axios.get(`https://service-system-reviews-server.vercel.app/myReview?email=${user.email}`, {withCredentials:true})
+        axios.get(`http://localhost:3000/myReview?email=${user.email}`, {withCredentials:true})
             .then(res => {
                 setReviews(res.data);
             
@@ -42,7 +42,7 @@ const MyReviews = () => {
     } = useForm()
     const onSubmit = (data) => {
         
-       axios.put('https://service-system-reviews-server.vercel.app/updateReview', newReview)
+       axios.put('http://localhost:3000/updateReview', newReview)
       .then(res=>{
         console.log(res.data)
       })
@@ -76,7 +76,7 @@ const MyReviews = () => {
             setReviews(rest)
             //    setReviews(reviews)
 
-                // axios.put('https://service-system-reviews-server.vercel.app/deleteReview')
+                // axios.put('http://localhost:3000/deleteReview')
                 // .then(res=>{
                 //   console.log(res.data);
                 // })
@@ -106,7 +106,7 @@ const MyReviews = () => {
     // console.log(loadedReviews);
    
     return (
-        <div className='max-w-6xl mx-auto '>
+        <div className=' mx-auto '>
             <NavBar></NavBar>
 
             <Helmet>

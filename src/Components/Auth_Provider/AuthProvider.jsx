@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
             users.push(currentUser.email)
           }
 
-          axios.post('https://service-system-reviews-server.vercel.app/jwt', user, {withCredentials:true})
+          axios.post('http://localhost:3000/jwt', user, {withCredentials:true})
           .then(res=>{
             console.log('login token',res.data);
             setLoading(false)
@@ -40,7 +40,7 @@ const AuthProvider = ({children}) => {
         }
         else{
           
-          axios.post('https://service-system-reviews-server.vercel.app/logout', {}, {withCredentials:true})
+          axios.post('http://localhost:3000/logout', {}, {withCredentials:true})
           .then(res=>{
             console.log('logout token:',res.data);
             setLoading(false)

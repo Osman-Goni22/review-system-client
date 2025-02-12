@@ -73,10 +73,10 @@ const ServiceDetails = () => {
             service.review_List = [newReview]
         }
 
-        axios.put(`https://service-system-reviews-server.vercel.app/addReview/${service._id}`, service)
+        axios.put(`http://localhost:3000/addReview/${service._id}`, service)
             .then(res => {
                 console.log(res.data);
-                axios.get(`https://service-system-reviews-server.vercel.app/details/${service._id}`)
+                axios.get(`http://localhost:3000/details/${service._id}`)
                     .then(res => {
                         setService(res.data)
                     })
@@ -84,7 +84,7 @@ const ServiceDetails = () => {
     }
 
     return (
-        <div className='lg:max-w-6xl mx-auto '>
+        <div className=' mx-auto '>
             <NavBar></NavBar>
             <Helmet>
                 <title>Details Page</title>
@@ -96,7 +96,7 @@ const ServiceDetails = () => {
                 
 
          
-            <div className="card bg-base-100 shadow-xl p-5 relative hover:-z-40 md:w-1/2 mx-auto">
+            <div className="card bg-base-100 shadow-xl p-5 relative hover:-z-40  mx-auto">
                 <figure>
                     <img
                         src={service.photo}
