@@ -4,9 +4,21 @@ import axios from 'axios';
 import Service from './Service';
 import Footer from './Footer';
 import { Helmet } from 'react-helmet';
+import { NavLink } from 'react-router-dom';
 
 const Services = () => {
     const [services, setServices] = useState([])
+
+    const handleSort = (services) => {
+        const sortedServices = services?.sort((a, b) => {
+            return parseFloat( a.price) -parseFloat( b.price);
+        })
+
+        console.log(sortedServices);
+
+        setServices(sortedServices);
+
+    }
 
     const [realServices, setRealServices] = useState([])
     console.log(realServices);
@@ -26,14 +38,14 @@ const Services = () => {
 
     }
 
-    
+
 
 
 
 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/services', {withCredentials:true})
+        axios.get('https://service-system-reviews-server.vercel.app/services', { withCredentials: true })
             .then(res => {
                 setServices(res.data);
                 setRealServices(res.data)
@@ -48,12 +60,17 @@ const Services = () => {
                 <title>Service Page</title>
                 <meta name="description" content="Nested component" />
             </Helmet>
-            
-            <p className=' text-2xl font-bold my-5 text-center'>Search by Category</p>
-            <div className='flex justify-center items-center gap-10'>
-           
-                <form className='w-[300px] mt-5' action="" onSubmit={handleSearch}>
+
+
+            <div className='flex justify-center gap-4 items-center '>
+                <p className=' text-2xl font-bold my-5 text-center'>Search by Category</p>
                
+
+            </div>
+            <div className='flex justify-center items-center gap-10'>
+
+                <form className='w-[300px] mt-5' action="" onSubmit={handleSearch}>
+
 
                     <select name="category" id="" className='input input-bordered w-[300px] mx-auto'>
                         <option className='text-center border' value="ALL" >All</option>
@@ -71,6 +88,8 @@ const Services = () => {
                     <input type="submit" className='input input-bordered flex justify-center mt-2 w-full bg-orange-400 text-white' value="Search" />
 
                 </form>
+
+
 
             </div>
 

@@ -24,7 +24,7 @@ const Service = ({ service }) => {
                         alt="Shoes" className='h-48 w-full' />
                 </figure>
                 <div className="flex flex-col flex-1">
-                    <h2 className="text-2xl font-bold flex justify-between">
+                    <h2 className="text-2xl font-bold flex justify-between items-center">
 
                         {
                             service.title

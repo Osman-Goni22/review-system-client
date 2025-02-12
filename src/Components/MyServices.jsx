@@ -12,7 +12,7 @@ const MyServices = () => {
     const { user } = useContext(AuthContext)
     const [services, setServices] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:3000/myservices?email=${user.email}`, {withCredentials:true})
+        axios.get(`https://service-system-reviews-server.vercel.app/myservices?email=${user.email}`, {withCredentials:true})
             .then(res => {
                 setServices(res.data);
             
@@ -40,7 +40,7 @@ const MyServices = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.delete(`http://localhost:3000/service/${id}`, {withCredentials:true})
+                axios.delete(`https://service-system-reviews-server.vercel.app/service/${id}`, {withCredentials:true})
                     .then(() => {
 
                         Swal.fire({
@@ -49,7 +49,7 @@ const MyServices = () => {
                             icon: "success"
                         });
 
-                        axios.get(`http://localhost:3000/myservices?email=${user.email}`, {withCredentials:true})
+                        axios.get(`https://service-system-reviews-server.vercel.app/myservices?email=${user.email}`, {withCredentials:true})
                             .then(res => {
                                 setServices(res.data);
                                

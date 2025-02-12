@@ -46,12 +46,12 @@ const router = createBrowserRouter([
     {
       path:"/details/:id",
       element:<PrivateRoute><ServiceDetails></ServiceDetails></PrivateRoute>,
-      loader:({params})=>fetch(`http://localhost:3000/details/${params.id}`)
+      loader:({params})=>fetch(`https://service-system-reviews-server.vercel.app/details/${params.id}`)
     },
     {
       path:"/update/:id",
       element:<PrivateRoute><Update></Update></PrivateRoute>,
-      loader:({params})=>fetch(`http://localhost:3000/details/${params.id}`)
+      loader:({params})=>fetch(`https://service-system-reviews-server.vercel.app/details/${params.id}`)
     },
     {
       path:"/myReview",

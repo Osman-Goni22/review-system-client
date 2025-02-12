@@ -27,7 +27,7 @@ const Home = () => {
     const [end, setEnd] = useState(100)
 
     useEffect(() => {
-        axios.get('http://localhost:3000/features')
+        axios.get('https://service-system-reviews-server.vercel.app/features')
             .then(res => {
                 setServices(res.data)
 
@@ -35,7 +35,7 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/services', { withCredentials: true })
+        axios.get('https://service-system-reviews-server.vercel.app/services', { withCredentials: true })
             .then(res => {
                 setEnd(res.data.length);
                 setTotalServices(res.data)
@@ -57,7 +57,7 @@ const Home = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/best')
+        axios.get('https://service-system-reviews-server.vercel.app/best')
             .then(res => {
                 setBestServices(res.data)
                 // const services = res.data;

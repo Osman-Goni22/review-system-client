@@ -33,7 +33,7 @@ const Update = () => {
        data.addedBy=user.email
        console.log(data);
 
-       axios.put(`http://localhost:3000/update/${loadedService._id}`, data)
+       axios.put(`https://service-system-reviews-server.vercel.app/update/${loadedService._id}`, data)
        .then(res=>{
          if(res.data.modifiedCount>0){
             toast('Service Updated Successfully');
