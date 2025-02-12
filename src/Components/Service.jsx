@@ -12,7 +12,7 @@ const Service = ({ service }) => {
                     }}
         
                     whileTap={{ scale: 0.9 }}
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.08 }}
         
         >
 

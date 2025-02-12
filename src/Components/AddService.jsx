@@ -30,7 +30,7 @@ const AddService = () => {
        data.addedBy=user.email
        console.log(data);
 
-       axios.post('http://localhost:3000/services', data)
+       axios.post('https://service-system-reviews-server.vercel.app/services', data)
        .then(res=>{
         console.log(res.data);
         toast('service added successfully');

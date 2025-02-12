@@ -33,7 +33,7 @@ const Services = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3000/services', {withCredentials:true})
+        axios.get('https://service-system-reviews-server.vercel.app/services', {withCredentials:true})
             .then(res => {
                 setServices(res.data);
                 setRealServices(res.data)

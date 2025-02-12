@@ -73,10 +73,10 @@ const ServiceDetails = () => {
             service.review_List = [newReview]
         }
 
-        axios.put(`http://localhost:3000/addReview/${service._id}`, service)
+        axios.put(`https://service-system-reviews-server.vercel.app/addReview/${service._id}`, service)
             .then(res => {
                 console.log(res.data);
-                axios.get(`http://localhost:3000/details/${service._id}`)
+                axios.get(`https://service-system-reviews-server.vercel.app/details/${service._id}`)
                     .then(res => {
                         setService(res.data)
                     })

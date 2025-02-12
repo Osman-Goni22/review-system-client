@@ -1,35 +1,42 @@
 import React, { useContext } from 'react';
 import { MdReviews } from "react-icons/md";
-import { NavLink , Link} from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { AuthContext } from './Components/Auth_Provider/AUthProvider';
 import { toast } from 'react-toastify';
 import './index.css'
 const NavBar = () => {
-    const {user, logOut} = useContext(AuthContext)
-    const links =<div className='flex gap-5'>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/signup'>Sign Up</NavLink>
-        <NavLink to='/signin'>Sign In</NavLink>
-        <NavLink to='/services'>Services</NavLink>
+    const { user, logOut } = useContext(AuthContext)
+    const links = <div className='flex gap-5'>
+
+
         {
-            user&& <div className='flex gap-5'>
-             <NavLink to='/addservice'>Add Service</NavLink>
-             <NavLink to='/myservices'>My Service</NavLink>
-             <NavLink to={`/myReview`}>My Reviews</NavLink>
-            
+            user ? <div className='flex gap-5'>
+                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/services'>Services</NavLink>
+                <NavLink to='/addservice'>Add Service</NavLink>
+                <NavLink to='/myservices'>My Service</NavLink>
+                <NavLink to={`/myReview`}>My Reviews</NavLink>
+
+            </div> : <div>
+
+                <NavLink to='/signup'>Sign Up</NavLink>
+                <NavLink to='/signin'>Sign In</NavLink>
+                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/services'>Services</NavLink>
+
             </div>
         }
     </div>
     console.log(user);
 
-    const handleLogOut=()=>{
+    const handleLogOut = () => {
         logOut()
-        .then(()=>{
-            toast('Logged Out successfully');
-        })
+            .then(() => {
+                toast('Logged Out successfully');
+            })
     }
     return (
-        <div className="navbar md:max-w-6xl mx-auto bg-base-100 bg-gradient-to-r from-blue-500 to-purple-500">
+        <div className="navbar  mx-auto  bg-gradient-to-r from-blue-500 to-purple-500 px-4">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,38 +63,38 @@ const NavBar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                   {links}
+                    {links}
                 </ul>
             </div>
             <div className='navbar-end'>
-              {
-                user? <div>
-                    <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS Navbar component"
-                            src={user?.photoURL} />
-                    </div>
-                </div>
-                <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                    <li>
-                        <a className="justify-between">
-                           {user?.displayName}
-                            <span className="badge">New</span>
-                        </a>
-                    </li>
-                    <li><a>Settings</a></li>
-                    <li><a onClick={handleLogOut}>Logout</a></li>
-                </ul>
-            </div>
-                </div>:
-               <Link to='/signin'>
-                Login
-               </Link>
-              }
+                {
+                    user ? <div>
+                        <div className="dropdown dropdown-end">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                    <img
+                                        alt="Tailwind CSS Navbar component"
+                                        src={user?.photoURL} />
+                                </div>
+                            </div>
+                            <ul
+                                tabIndex={0}
+                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                <li>
+                                    <a className="justify-between">
+                                        {user?.displayName}
+                                        <span className="badge">New</span>
+                                    </a>
+                                </li>
+                                <li><a>Settings</a></li>
+                                <li><a onClick={handleLogOut}>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div> :
+                        <Link to='/signin'>
+                            Login
+                        </Link>
+                }
             </div>
         </div>
     );
